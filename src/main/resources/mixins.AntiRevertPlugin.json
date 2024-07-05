@@ -1,0 +1,9 @@
+{
+    "required": true,
+    "compatibilityLevel": "JAVA_8",
+    "package": "lol.zt8.mixins",
+    "refmap": "mixins.AntiRevertPlugin.refmap.json",
+    "client": [
+        "GuiContainerMixin"
+    ]
+}

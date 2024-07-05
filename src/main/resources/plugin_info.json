@@ -1,11 +1,11 @@
 {
-  "name": "ExamplePlugin",
+  "name": "AntiRevert",
   "version": "${version}",
-  "description": "Example implementation of a plugin for Lambda.",
+  "description": "Prevents inventory interactions with superillegals and overstacked items.",
   "url": "https://github.com/lambda-client/ExamplePlugin",
-  "authors": [ "me", "you" ],
-  "main_class": "com.lambda.ExamplePlugin",
+  "authors": [ "zt8" ],
+  "main_class": "lol.zt8.AntiRevertPlugin",
   "min_api_version": "3.3",
-  "mixins": [ "mixins.ExamplePlugin.json" ],
+
   "required_plugins": []
 }
