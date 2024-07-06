@@ -30,7 +30,12 @@ internal object AntiRevert : PluginModule(
 
     init {
         listener<WindowClickEvent> {
-            val stack = (mc.currentScreen as GuiContainer).slotUnderMouse?.stack
+            var stack : ItemStack?
+            try {
+                stack = (mc.currentScreen as GuiContainer).slotUnderMouse?.stack
+            } catch (e: Exception) {
+                return@listener
+            }
             if (stack != null) {
                 if (stack.isIllegal()) {
                     it.cancel()
@@ -38,24 +43,6 @@ internal object AntiRevert : PluginModule(
                 }
             }
         }
-        /*listener<PacketEvent.Send> {
-            when (it.packet) {
-                is CPacketClickWindow -> {
-                    MessageSendHelper.sendChatMessage("Recieved CPacketClickWindow " + ((mc.currentScreen as GuiChest).getSlotUnderMouse()?.stack?.item?.id))
-                    if ((it.packet as CPacketClickWindow).clickedItem.item.id in illegals) {
-                        it.cancel()
-                        val reasonText = arrayOf("[AntiRevert] clicked on a no-no item")
-                        val screen = GuiMultiplayer(GuiMainMenu())
-
-                        mc.soundHandler.playSound(PositionedSoundRecord.getRecord(SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, 1.0f, 1.0f))
-                        mc.connection!!.networkManager.closeChannel(TextComponentString(""))
-                        mc.loadWorld(null as WorldClient?)
-
-                        mc.displayGuiScreen(LambdaGuiDisconnected(reasonText, screen, false, LocalTime.now()))
-                    }
-                }
-            }
-        }*/
     }
 
     private fun Slot.isIllegal(): Boolean {
